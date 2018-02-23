@@ -1,0 +1,10 @@
+{% extends "base_layout.html" %}
+
+{% block title %} Post {% endblock %}
+{% block content %}
+    <ul>
+          <li>{{ object.title }}</li>
+          <li>{{ object.content }}</li>
+          <li>{{ object.pub_date }}</li>
+    </ul>
+{% endblock %}
