@@ -8,7 +8,7 @@ class Post(models.Model):
     slug = models.SlugField()
     content = models.TextField()
     img = models.ImageField(blank=True)
-    pub_date = models.DateTimeField()
+    pub_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title

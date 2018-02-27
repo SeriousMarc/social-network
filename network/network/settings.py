@@ -135,3 +135,14 @@ LOGIN_REDIRECT_URL = 'homepage'
 HUNTER_API_KEY = keys.HUNTER_API_KEY
 #clearbit API key
 CLEARBIT_API_KEY = keys.CLEARBIT_API_KEY
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+}
