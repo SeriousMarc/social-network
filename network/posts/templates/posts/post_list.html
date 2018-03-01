@@ -2,11 +2,8 @@
 
 {% block title %} List {% endblock %}
 {% block content %}
-    <ul>
-        {% for post in object_list %}
-            <li>{{ post.user.username }}</li>
-            <li>{{ post.user.first_name }}</li>
-            <li>{{ post.user.last_name }}</li>
-        {% endfor %}
-    </ul>
+  {% for post in object_list %}
+    <p><a href="">{{ post.title }}</a></p>
+    <p>{{ post.content }}</p>
+  {% endfor %}
 {% endblock %}

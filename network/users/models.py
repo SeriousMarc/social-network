@@ -21,11 +21,10 @@ class Profile(models.Model):
         if created:
             profile = Profile.objects.create(user=instance)
 
-    # @receiver(post_save, sender=User)
-    # def save_user_profile(sender, instance, **kwargs):
-    #     instance.profile.save()
-
-    # def create_profile(sender, **kwargs):
-    #     if kwargs['created']:
-    #         profile = Profile.objects.create(user=kwargs['instance'])
-    # post_save.connect(create_profile, sender=User)
+    # @property
+    # def user_data(self):
+    #     return {
+    #         'first_name':self.user.first_name,
+    #         'last_name':self.user.last_name,
+    #         'email':self.user.email
+    #     }

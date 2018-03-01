@@ -7,6 +7,7 @@ from .models import Profile
 import requests
 # import clearbit
 
+#signup form with emailhunter varification
 class SignUpForm(UserCreationForm):
     #first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
     #last_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
@@ -18,14 +19,13 @@ class SignUpForm(UserCreationForm):
 
     def clean_email(self):
         """
-            Inject ValidationError for emailhunter domain confirmation.
+            Emailhunter domain verification of exist.
         """
-        print (self.cleaned_data.get('email'))
         email = self.cleaned_data.get('email')
-        #get data from emailhunter service
+        # get json data from emailhunter service
         url = f'https://api.hunter.io/v2/email-verifier?email={email}&api_key={settings.HUNTER_API_KEY}'
         response_json = requests.get(url).json()
-        #smtp_check - True if domain exist
+        # Inject ValidationError for emailhunter domain confirmation.
         if response_json['data']['smtp_check'] == False:
             raise forms.ValidationError("Domain doesn't exist, please, enter valid email!")
         return email

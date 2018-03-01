@@ -131,6 +131,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGOUT_REDIRECT_URL = 'homepage'
 LOGIN_REDIRECT_URL = 'homepage'
 
+"""
+    Create keys.py in the same directory with settings.py
+    and set up your API keys as
+    HUNTER_API_KEY for emailhunter service &
+    CLEARBIT_API_KEY for clearbit service
+"""
 # emailhunter API key
 HUNTER_API_KEY = keys.HUNTER_API_KEY
 #clearbit API key
