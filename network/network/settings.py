@@ -120,16 +120,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = (
+STATIC_URL          = '/static/'
+STATICFILES_DIRS    = (
     os.path.join(BASE_DIR, 'assets'),
 )
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL   = '/media/'
+MEDIA_ROOT  = os.path.join(BASE_DIR, 'media')
 
 LOGOUT_REDIRECT_URL = 'homepage'
-LOGIN_REDIRECT_URL = 'homepage'
+LOGIN_REDIRECT_URL  = 'homepage'
 
 """
     Create keys.py in the same directory with settings.py
@@ -138,9 +138,9 @@ LOGIN_REDIRECT_URL = 'homepage'
     CLEARBIT_API_KEY for clearbit service
 """
 # emailhunter API key
-HUNTER_API_KEY = keys.HUNTER_API_KEY
+HUNTER_API_KEY      = keys.HUNTER_API_KEY
 #clearbit API key
-CLEARBIT_API_KEY = keys.CLEARBIT_API_KEY
+CLEARBIT_API_KEY    = keys.CLEARBIT_API_KEY
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
@@ -152,3 +152,18 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
     ),
 }
+
+"""
+curl -X POST -d "username=alex&password=test1234" http://127.0.0.1:8000/api/auth/token/
+http POST http://127.0.0.1:8000/api/auth/token/ username=alex password=test1234
+
+eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyMiwidXNlcm5hbWUiOiJhbGV4IiwiZXhwIjoxNTIwNDU1OTE2LCJlbWFpbCI6ImFsZXhAYWxleG1hY2Nhdy5jb20ifQ.dC2h-IRvbGQbP-tke_8iEKmR28JJwEU-YubNEDniqDQ
+curl -H "Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyMiwidXNlcm5hbWUiOiJhbGV4IiwiZXhwIjoxNTIwNDU1OTE2LCJlbWFpbCI6ImFsZXhAYWxleG1hY2Nhdy5jb20ifQ.dC2h-IRvbGQbP-tke_8iEKmR28JJwEU-YubNEDniqDQ
+" http://127.0.0.1:8000/api/posts/
+
+curl -X POST -H "Authorization :JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyMiwidXNlcm5hbWUiOiJhbGV4IiwiZXhwIjoxNTIwNDQzMDM4LCJlbWFpbCI6ImFsZXhAYWxleG1hY2Nhdy5jb20ifQ.znItiO57bEf1JDpxCztnIIsFgpQy7oJhQsrzUdMCXg0" -H "Content-Type: application/json" -d '{"title":"curltitle","slug":"curltitle","content":"something about curl"}' http://127.0.0.1:8000/api/posts/create/
+
+curl -H "Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyMiwidXNlcm5hbWUiOiJhbGV4IiwiZXhwIjoxNTIwNDQzMDM4LCJlbWFpbCI6ImFsZXhAYWxleG1hY2Nhdy5jb20ifQ.znItiO57bEf1JDpxCztnIIsFgpQy7oJhQsrzUdMCXg0
+" http://127.0.0.1:8000/api/posts/
+
+"""

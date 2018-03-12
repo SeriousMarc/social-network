@@ -2,11 +2,13 @@ from django.db.models import Q
 from rest_framework import generics, mixins
 from .serializers import PostSerializer
 from .permissions import IsOwnerOrReadOnly
+from rest_framework.permissions import AllowAny
 from posts.models import Post
 
 class PostAPIView(mixins.CreateModelMixin, generics.ListAPIView):
     lookup_field        = 'pk'
     serializer_class    = PostSerializer
+    # permission_classes  = [AllowAny]
     # permission_classes = []
     # queryset = Post.objects.all()
 
@@ -27,8 +29,7 @@ class PostAPIView(mixins.CreateModelMixin, generics.ListAPIView):
 class PostRudView(generics.RetrieveUpdateDestroyAPIView):
     lookup_field        = 'pk'
     serializer_class    = PostSerializer
-    permission_classes  = [IsOwnerOrReadOnly]
+    # permission_classes  = [AllowAny]
     # queryset = Post.objects.all()
-
     def get_queryset(self):
         return Post.objects.all()
