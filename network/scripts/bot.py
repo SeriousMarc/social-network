@@ -9,11 +9,11 @@ from botconf import number_of_users, max_posts_per_user, max_likes_per_user
 # max_likes_per_user  = botconf.max_likes_per_user
 
 # function generates random string
-def text_gen(size = 8, chars=string.ascii_letters + string.digits):
+def text_gen(size=8, chars=string.ascii_letters + string.digits):
 	return ''.join(random.choice(chars) for _ in range(size))
 
 # function generates random email
-def email_gen(size = 8):
+def email_gen(size=8):
     return text_gen(size) + '@gmail.com'
 
 # gets and return token depends on login info
@@ -47,7 +47,7 @@ def create_users(user, user_count=2, from_rand=8, to_rand=12):
 	# filling in users data with random data(strings and email)
 	for _ in range(user_count):
 	    user = {item:(text_gen(random.randint(from_rand, to_rand))
-				if not item=='email' else email_gen())
+				if not item == 'email' else email_gen())
 				for item in user}
 	    users.append(user)
 	return users
