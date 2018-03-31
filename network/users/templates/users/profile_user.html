@@ -3,12 +3,42 @@
 {% block title %}Profile{% endblock %}
 {% block content %}
   <div class="container">
+    <!-- Profile info part -->
     <h2>Profile</h2>
-    <div class="user">
-      <p>{{ user.first_name }}</p>
-      <p>{{ user.last_name }}</p>
-      <p>{{ user.profile.bio }}</p>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-6">
+        <div class="well well-sm">
+          <div class="row">
+            <div class="col-sm-6 col-md-4">
+            <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
+            </div>
+            <div class="col-sm-6 col-md-8">
+              <h4>{{user.full_name}}</h4>
+              <small><cite title="from">{{user.profile.location}}<i class="glyphicon glyphicon-map-marker"></i></cite></small>
+              <p>
+              <i class="glyphicon glyphicon-envelope"></i>{{user.email}}
+              <br />
+              <i class="glyphicon glyphicon-globe"></i>{{user.profile.bio}}
+              <br />
+              <i class="glyphicon glyphicon-gift"></i>{{user.profile.birth_date}}
+              </p>
+              <!-- Split button -->
+              <div class="dropdown show">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Social
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Facebook</a>
+                  <a class="dropdown-item" href="#">Twitter</a>
+                  <a class="dropdown-item" href="#">Instagram</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <!-- Profile posts part -->
     <div class="posts">
       {% for post in posts %}
       <div class="post">

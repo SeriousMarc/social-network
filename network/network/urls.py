@@ -5,6 +5,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 from django.conf import settings
 from rest_framework_jwt.views import obtain_jwt_token
+from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -13,7 +14,8 @@ urlpatterns = [
     path('posts/', include('posts.urls')),
     path('api/posts/', include('posts.api.urls', namespace="api-posts")),
     path('api/auth/token/', obtain_jwt_token),
-    path('', TemplateView.as_view(template_name="base_layout.html"), name="homepage"),
+    # path('', TemplateView.as_view(template_name="base_layout.html"), name="homepage"),
+    path('', views.homepage, name="homepage"),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

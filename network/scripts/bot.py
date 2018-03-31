@@ -1,7 +1,4 @@
-import requests
-import random
-import string
-import json
+import requests, random, string, json
 from botconf import number_of_users, max_posts_per_user, max_likes_per_user
 # script instructions
 # number_of_users     = botconf.number_of_users

@@ -21,6 +21,39 @@ body {
   grid-gap: 20px;
 }
 
-img {
-  max-width: 100%;
+img { max-width: 100%;}
+
+.container {
+	margin-top: 80px;
+	margin-bottom: 20px;
+}
+
+/* Login&Signup form styles */
+.site-form {
+  min-width: 250px;
+  max-width: 320px;
+  padding: 30px 38px 66px;
+  margin: 0 auto;
+  background-color: #eee;
+  border: 3px dotted rgba(0,0,0,0.1);
+  }
+
+.helptext, .site-form ul, .errorlist li{
+    margin: 0 auto 20px;
+    color: #0062ff;
+    font-size: 14px;
+    display: block;
+}
+
+.site-form input, .site-form textarea{ display: block;}
+
+.errorlist{ padding: 0;}
+
+/* Profile styles */
+.glyphicon {  margin-bottom: 10px;margin-right: 10px;}
+
+small {
+  display: block;
+  line-height: 1.428571429;
+  color: #999;
 }

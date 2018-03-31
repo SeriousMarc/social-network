@@ -6,10 +6,16 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Post
 from .forms import CreatePost
 # Create your views here.
+
 class PostListView(ListView):
     model               = Post
     login_url           = 'users:login'
     # redirect_field_name = 'user:signup'
+    def get(self, request, *args, **kwargs):
+        if request.session.test_cookie_worked():
+            print("TEST COOKIE WORKED!")
+            request.session.delete_test_cookie()
+        return render(request, '../templates/base_layout.html')
 
 class PostDetailView(DetailView):
     model               = Post
@@ -30,6 +36,22 @@ class PostCreateView(LoginRequiredMixin, CreateView):
             return redirect('posts:list')
         return render(request, self.template_name, {'form': form})
 
+@login_required(login_url="users:login")
+def post_edit_view(request, slug):
+    instance_1 = Post.objects.get(slug=slug)
+    print(instance_1.title)
+    if request.method == 'POST':
+        form = CreatePost(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('posts:list')
+    else: # method GET
+        print("Before:", instance_1.title)
+        form = CreatePost(instance=instance_1)
+        print("TITLE:", form.fields['title'])
+    return render(request, 'posts/post_edit.html', {'form':form})
+
+
 # class PostEditView(LoginRequiredMixin, UpdateView):
 #     model               = Post
 #     # form_class          = CreatePost
@@ -48,17 +70,3 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 #         form.save()
 #         return redirect('posts:list')
 #     return render(request, 'posts/post_edit.html', {'form': form})
-
-@login_required(login_url="users:login")
-def post_edit_view(request, slug):
-    instance_1 = Post.objects.get(slug=slug)
-    print(instance_1.title)
-    if request.method == 'POST':
-        form = CreatePost(request.POST, instance=instance)
-        if form.is_valid():
-            form.save()
-            return redirect('posts:list')
-    else: # method GET
-        form = CreatePost(request.GET, instance=Post.objects.get(slug=slug))
-        print(form.fields['title'])
-    return render(request, 'posts/post_edit.html', {'form':form})

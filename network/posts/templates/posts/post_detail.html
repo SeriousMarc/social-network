@@ -2,9 +2,12 @@
 
 {% block title %} Post {% endblock %}
 {% block content %}
-    <ul>
-          <li>{{ object.title }}</li>
-          <li>{{ object.content }}</li>
-          <li>{{ object.pub_date }}</li>
-    </ul>
+  {% with total_likes=post.users_like.count %}
+      <ul>
+            <li>Likes: {{ total_likes }}</li>
+            <li>{{ object.title }}</li>
+            <li>{{ object.content }}</li>
+            <li>{{ object.pub_date }}</li>
+      </ul>
+  {% endwith %}
 {% endblock %}

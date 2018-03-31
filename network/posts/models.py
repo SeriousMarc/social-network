@@ -8,7 +8,7 @@ class Post(models.Model):
     content     = models.TextField()
     img         = models.ImageField(blank=True)
     pub_date    = models.DateTimeField(auto_now_add=True)
-    # likes       = models.ManyToManyField(User, blank=True, related_name='post_likes')
+    users_like  = models.ManyToManyField(User, blank=True, related_name='post_liked')
 
     def __str__(self):
         return self.title
