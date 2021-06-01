@@ -11,4 +11,4 @@ Pillow==5.0.0
 PyJWT==1.5.3
 pytz==2018.3
 requests==2.18.4
-urllib3==1.22
+urllib3==1.26.5
